@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>One-Stroke Heist</title>
+  <meta property="og:title" content="One-Stroke Heist">
+  <meta property="og:description" content="Daily vault puzzle. One continuous stroke. Don't lift. Don't cross. Don't touch the traps.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Major+Mono+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+  <script src="feedback.js" defer></script>
+</head>
+<body>
+  <div id="hud">
+    <div class="hud-row top">
+      <div class="stat">
+        <span class="label">// VAULT</span>
+        <span class="value" id="vaultDate">--</span>
+      </div>
+      <div class="stat right">
+        <span class="label">// GEMS</span>
+        <span class="value" id="gemCount">0 / 0</span>
+      </div>
+    </div>
+    <div class="hud-row bottom">
+      <div class="stat">
+        <span class="label">// STROKE</span>
+        <span class="value" id="strokeLen">0.0 in</span>
+      </div>
+      <div class="stat right">
+        <span class="label">// STATUS</span>
+        <span class="value" id="statusText">STANDBY</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="canvas-wrap">
+    <canvas id="vault"></canvas>
+    <div id="pre-overlay" class="overlay">
+      <div class="brief">
+        <div class="stamp">CONFIDENTIAL // DAILY BRIEF</div>
+        <h1>ONE-STROKE HEIST</h1>
+        <p class="sub">One draw. No lifts. No crossings. No traps.</p>
+        <ul class="rules">
+          <li><b>01</b> Press and hold, sweep through the gems.</li>
+          <li><b>02</b> Lift your finger &rarr; job's blown.</li>
+          <li><b>03</b> Cross your own line &rarr; alarm trips.</li>
+          <li><b>04</b> Touch a red pixel &rarr; laser grid, game over.</li>
+        </ul>
+        <button id="startBtn" class="chunk-btn">BEGIN THE JOB</button>
+      </div>
+    </div>
+    <div id="end-overlay" class="overlay hidden">
+      <div class="receipt">
+        <div class="stamp">POST-JOB REPORT</div>
+        <div class="score-line"><span id="endTitle">HEIST COMPLETE</span></div>
+        <div class="big-score" id="bigScore">0 / 0</div>
+        <div class="emoji-grid" id="emojiGrid">⬛⬛⬛⬛⬛⬛⬛⬛⬛</div>
+        <div class="sub-stats">
+          <div><span class="label">STROKE</span><span id="endStroke">0.0 in</span></div>
+          <div><span class="label">EFFICIENCY</span><span id="endEff">--</span></div>
+          <div><span class="label">REASON</span><span id="endReason">--</span></div>
+        </div>
+        <div class="btn-row">
+          <button id="copyBtn" class="chunk-btn">COPY SHARE</button>
+          <button id="retryBtn" class="chunk-btn ghost">REPLAY TODAY</button>
+        </div>
+        <div id="copiedToast" class="toast hidden">copied to clipboard</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="share" style="display:none">
+    <button onclick="share()">Share your result!</button>
+  </div>
+</body>
+</html>
